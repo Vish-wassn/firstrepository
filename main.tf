@@ -3,9 +3,9 @@ region = var.aws_region
 }
 
 
-resource "aws_security_group" "security_jenkins_grp" {
+resource "aws_security_group" "my_security_grouop" {
   name        = var.security_group
-  description = "security group for jenkins"
+  description = "security group for ec2 instance"
 
   ingress {
     from_port   = 8080
