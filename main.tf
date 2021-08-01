@@ -36,12 +36,12 @@ resource "aws_security_group" "security_jenkins_grp" {
 
 
 resource "aws_instance" "myFirstInstance" {
-  ami           = var.ami-0b9064170e32bde34
-  key_name = var.new1
-  instance_type = "t2.micro"
-  security_groups= [ "security_jenkins_grp"]
+  ami           = var.ami_id
+  key_name = var.key_name
+  instance_type = var.instance_type
+  security_groups= [ var.security_group]
   tags= {
-    Name = "jenkins_instance"
+    Name =var.tag_name
   }
 
 }
@@ -49,7 +49,7 @@ resource "aws_instance" "myFirstInstance" {
 
 resource "aws_eip" "myFirstInstance" {
    vpc  =true
-  COUNT =1
+ 
 instance = aws_instance.myFirstInstance.id
  tags= {
     Name = "my_elastic_ip"
