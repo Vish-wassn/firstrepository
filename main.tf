@@ -1,8 +1,10 @@
-
+provider "aws"{
+region = var.aws_region
+}
 
 
 resource "aws_security_group" "security_jenkins_grp" {
-  name        = "security_jenkins_grp"
+  name        = var.security_group
   description = "security group for jenkins"
 
   ingress {
@@ -28,14 +30,14 @@ resource "aws_security_group" "security_jenkins_grp" {
   }
 
   tags= {
-    Name = "security_jenkins_grp"
+    Name = var.security_group
   }
 }
 
 
 resource "aws_instance" "myFirstInstance" {
-  ami           = "ami-0b9064170e32bde34"
-  key_name = "new1"
+  ami           = var.ami-0b9064170e32bde34
+  key_name = var.new1
   instance_type = "t2.micro"
   security_groups= [ "security_jenkins_grp"]
   tags= {
