@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html
-<body
-ertjdfghj
+<html>
+<body>
+  branch1 
+  <h3>New changes</h3>
 <h2>HTML Images</h2>
 <p>HTML images are defined with the img tag:</p>
 
