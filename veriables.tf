@@ -25,8 +25,10 @@ variable "tag_name"{
 
 variable "ami_id"{
   description ="AMI for ubuntu ec2 instance"
- default     =data.aws_ami.ubuntu.id
+type        = string
    ## "ami-0b9064170e32bde34"
+  
+  
 
 }
 
