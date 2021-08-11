@@ -37,6 +37,7 @@ resource "aws_subnet" "private_subnet1" {
 # Create Internet Gateway and Attach it to VPC
 resource "aws_internet_gateway" "i-gw" {
  vpc_id = aws_vpc.my_vpc.id
+ # connectivity_type = "public"
 
   tags = {
     Name = "shash_igw"
@@ -48,7 +49,7 @@ resource "aws_internet_gateway" "i-gw" {
 resource "aws_nat_gateway" "nat-gw" {
 #allocation_id = aws_eip.new_vpcprivate_ec2.id
 # vpc_id = aws_vpc.my_vpc.id
-connectivity_type = "private"
+#connectivity_type = "private"
 subnet_id="${aws_subnet.p_subnet1.id}"
   tags = {
     Name = "nat_igw"
