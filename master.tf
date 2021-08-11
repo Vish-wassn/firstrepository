@@ -160,7 +160,7 @@ resource "aws_instance" "new_vpcprivate_ec2" {
  subnet_id="${aws_subnet.private_subnet1.id}"
   vpc_security_group_ids=["${aws_security_group.sh_security.id}"]
   tags = {
-    Name = "new_vpc_ec2"
+    Name = "new_vpcprivate_ec2"
   }
 }
 
