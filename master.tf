@@ -52,7 +52,7 @@ resource "aws_route_table_association" "public-subnet-1-route-table-association"
 
 resource "aws_security_group" "sh_security" {
   name        = var.my_vpc_secure
- # vpc_id      = "${aws_vpc.my_vpc.id}"
+  vpc_id      = "${aws_vpc.my_vpc.id}"
 description = "security group for ec2 instance"
 
   ingress {
@@ -79,8 +79,8 @@ resource "aws_instance" "new_vpc_ec2" {
   ami           = var.ami_id
   instance_type = var.instance_type
 # in which subnet our ec2 should launch
- # subnet_id="${aws_subnet.p_subnet1.id}"
- # vpc_security_group_ids=["${aws_security_group.sh_security.id}"]
+ subnet_id="${aws_subnet.p_subnet1.id}"
+  vpc_security_group_ids=["${aws_security_group.sh_security.id}"]
   tags = {
     Name = "new_vpc_ec2"
   }
