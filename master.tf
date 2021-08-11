@@ -139,6 +139,7 @@ description = "security group for ec2 instance"
 resource "aws_instance" "new_vpc_ec2" {
   ami           = var.ami_id
   instance_type = var.instance_type
+   key_name = var.key_name
 # in which subnet our ec2 should launch
  subnet_id="${aws_subnet.p_subnet1.id}"
 
@@ -152,6 +153,7 @@ resource "aws_instance" "new_vpc_ec2" {
 resource "aws_instance" "new_vpcprivate_ec2" {
   ami           = var.ami_id
   instance_type = var.instance_type
+   key_name = var.key_name
 # in which subnet our ec2 should launch
  
  subnet_id="${aws_subnet.private_subnet1.id}"
