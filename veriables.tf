@@ -2,6 +2,10 @@ variable "aws_region" {
   description = "Region for the VPC"
   default = "us-east-2"
 }
+variable "key_name"{
+  description ="SSH keys to connect to ec2 instance"
+  default     ="new1"
+}
 variable "my_vpc1" {
   description = "CIDR for the VPC"
   default = "10.0.0.0/16"
