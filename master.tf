@@ -36,7 +36,7 @@ resource "aws_subnet" "private_subnet1" {
 
 # Create Internet Gateway and Attach it to VPC
 resource "aws_internet_gateway" "i-gw" {
-# vpc_id = aws_vpc.my_vpc.id
+ vpc_id = aws_vpc.my_vpc.id
  # connectivity_type = "public"
 
   tags = {
@@ -52,7 +52,7 @@ allocation_id = aws_eip.new_vpcprivate_ec2.id
 #connectivity_type = "private"
 subnet_id="${aws_subnet.p_subnet1.id}"
   tags = {
-    Name = "nat_igw"
+    Name = "nat_gw"
   }
 }
 
@@ -60,7 +60,7 @@ subnet_id="${aws_subnet.p_subnet1.id}"
 resource "aws_eip" "new_vpcprivate_ec2" {
    vpc  =true
  
-instance = aws_instance.new_vpcprivate_ec2.id
+instance = aws_instance.new_private_ec2.id
  tags= {
     Name = "my_elastic_ip"
   }
@@ -151,7 +151,7 @@ resource "aws_instance" "new_vpc_ec2" {
 }
 
 # launching our private ec2 in vpc
-resource "aws_instance" "new_vpcprivate_ec2" {
+resource "aws_instance" "new_private_ec2" {
   ami           = var.ami_id
   instance_type = var.instance_type
    key_name = var.key_name
