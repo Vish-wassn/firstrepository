@@ -15,6 +15,9 @@ resource "aws_vpc" "my_vpc" {
 resource "aws_subnet" "p_subnet1" {
   vpc_id     = aws_vpc.my_vpc.id
   cidr_block = var.p_subnet12
+#for public it should be false
+
+ map_public_ip_on_lunch ="true"
   availability_zone= "us-east-2a"
 
   tags = {
@@ -28,6 +31,7 @@ resource "aws_subnet" "private_subnet1" {
   vpc_id     = aws_vpc.my_vpc.id
   cidr_block = var.private_subnet
   availability_zone= "us-east-2b"
+map_public_ip_on_lunch ="false"
 
   tags = {
     Name = "private_subnet1"
@@ -35,6 +39,7 @@ resource "aws_subnet" "private_subnet1" {
 }
 
 # Create Internet Gateway and Attach it to VPC
+
 resource "aws_internet_gateway" "i-gw" {
  vpc_id = aws_vpc.my_vpc.id
  # connectivity_type = "public"
@@ -59,8 +64,8 @@ subnet_id="${aws_subnet.p_subnet1.id}"
 
 resource "aws_eip" "new_vpcprivate_ec2" {
    vpc  =true
- 
-instance = aws_instance.new_private_ec2.id
+ depends_on= [aws_internet_gateway.i-gw]
+#instance = aws_instance.new_private_ec2.id
  tags= {
     Name = "my_elastic_ip"
   }
@@ -68,6 +73,7 @@ instance = aws_instance.new_private_ec2.id
 }
 
 # Create Route Table and Add Public Route
+
 resource "aws_route_table" "public-route-table" {
   vpc_id       = aws_vpc.my_vpc.id
 
@@ -143,7 +149,7 @@ resource "aws_instance" "new_vpc_ec2" {
    key_name = var.key_name
 # in which subnet our ec2 should launch
  subnet_id="${aws_subnet.p_subnet1.id}"
-
+  associate_public_ip_address = true
   vpc_security_group_ids=["${aws_security_group.sh_security.id}"]
   tags = {
     Name = "new_vpc_ec2"
@@ -156,19 +162,10 @@ resource "aws_instance" "new_private_ec2" {
   instance_type = var.instance_type
    key_name = var.key_name
 # in which subnet our ec2 should launch
- 
+ associate_public_ip_address = false
  subnet_id="${aws_subnet.private_subnet1.id}"
   vpc_security_group_ids=["${aws_security_group.sh_security.id}"]
   tags = {
     Name = "new_vpcprivate_ec2"
   }
 }
-
-
-
-
-
-
-
-
-
