@@ -152,7 +152,7 @@ resource "aws_instance" "new_vpc_ec2" {
 
 # launching our private ec2 in vpc
 resource "aws_instance" "new_private_ec2" {
-  ami           = var.ami_id
+  ami           = var.ami_id1
   instance_type = var.instance_type
    key_name = var.key_name
 # in which subnet our ec2 should launch
