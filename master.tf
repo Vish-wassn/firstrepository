@@ -17,7 +17,7 @@ resource "aws_subnet" "p_subnet1" {
   cidr_block = var.p_subnet12
 #for public it should be false
 
- map_public_ip_on_lunch ="true"
+# map_public_ip_on_lunch ="true"
   availability_zone= "us-east-2a"
 
   tags = {
@@ -31,7 +31,7 @@ resource "aws_subnet" "private_subnet1" {
   vpc_id     = aws_vpc.my_vpc.id
   cidr_block = var.private_subnet
   availability_zone= "us-east-2b"
-map_public_ip_on_lunch ="false"
+#map_public_ip_on_lunch ="false"
 
   tags = {
     Name = "private_subnet1"
