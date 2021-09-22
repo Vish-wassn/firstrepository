@@ -46,6 +46,7 @@ resource "aws_instance" "myFirstInstance" {
 
 }
 
+#fghjkhj
 
 resource "aws_eip" "myFirstInstance" {
    vpc  =true
