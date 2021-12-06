@@ -5,7 +5,7 @@ variable "aws_region"{
 
 variable "key_name"{
   description ="SSH keys to connect to ec2 instance"
-  default     ="new1"
+  default     ="rajath"
 }
 
 variable "instance_type"{
@@ -15,7 +15,7 @@ variable "instance_type"{
 
 variable "security_group"{
   description ="Name of the security group"
-  default     ="my-jenkins-security-group"
+  default     ="my-terraform-security-group"
 }
 
 variable "tag_name"{
